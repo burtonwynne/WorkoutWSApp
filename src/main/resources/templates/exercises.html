@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<title>Edit Exercises</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		//alert("Fuck You, World!");
+		//alert("bang!");
+		populateExercises();
+	});
+	
+	function populateExercises(){
+		//alert("hit");
+		$.getJSON("/workout/list", null, function(data) {
+			alert(data);
+		    $("#Exercises option").remove(); // Remove all <option/> child tags.
+		    $.each(data.entity, function(index, item) { // Iterates through a collection
+		        $("#Exercises").append( // Append an object to the inside of the select box
+		            $("<option></option>") // Yes you can do this.
+		                .text(item.name)
+		                .val(item.id)
+		        );
+		    });
+		});
+		
+		
+	}
+</script>
+<link rel="stylesheet" type="text/css" href="/css/workout.css"></link>
+</head>
+<body>
+<script type="text/javascript">
+	function editExerciseForm(){
+		var form = $(this);
+		alert(form);
+		var myObject = new Object();
+		myObject.id = form.id.value();
+		myObject.name = form.name.value();
+		myObject.duration = form.duration.value();
+		myObject.creationDate = form.creation_date.value();
+		myObject.lastModifiedDate = form.last_modified_date.value();
+		myObject.video = { form.video.id(), form.video.value()};
+		myObject.status = form.status.value();
+		if(form.id == null){
+			createExercise(form);
+		}else{
+			updatedExercise(form);
+		}
+	}
+	function createExercise(form){
+		alert("Creating Exercise.");
+	}
+	
+	function updatedExercise(form){
+		alert("Update Exercise");
+	}
+
+</script>
+	<!-- CONTAINER -->
+	<div id="container">
+		<!-- HEADER -->
+		<div id="header">
+			<div id="logo"></div>
+			<div id="top_info"></div>
+			<div id="navbar"></div>
+		</div>
+		<!-- END OF HEADER -->
+		<!-- CONTENT AREA -->
+		<div id="content_area">
+			<div id="banner"></div>
+			<div id="left_col">
+				<div class="form">
+					<form id="exerciseList" name="exerciseList" onclick="">
+						<label>Exercise List</label><br></br>
+						<select id="exercises" name="exercises">
+						</select><br></br>
+					</form>
+				</div>
+			
+			</div>
+			<div id="right_col">
+				<div class="form">
+					<form onsubmit="editExerciseForm()">
+						<p id="exercise_edit" class="form_title">Exercise</p>
+						<label>id</label><input id="id" name="id" readonly="readonly"></input><br></br>
+						<label>name</label><input id="name" name="name" required="required"></input><br></br>
+						<label>description</label><input id="description" name="description"></input><br></br>
+						<label>video</label><select id="video" name="video" ></select><br></br>
+						<label>duration</label><input id="duration" name="duration" required="required"></input><br></br>
+						<label>creation date</label><input id="creation_date" name="creation_date" readonly="readonly"></input><br></br>
+						<label>last modified date</label><input id="last_modified_date" name="last_modified_date" readonly="readonly"></input><br></br>
+						<label>status</label><select id="status" name="status"></select><br></br>
+						<button id="clear" value="clear" type="button">clear</button><input id="save" value="save" type="submit"></input><br></br>
+					</form>
+					<script type="text/javascript">
+						$("#exercise_edit").validate();
+					</script>
+				</div>
+			</div>
+		</div>
+		<!-- END OF CONTENT AREA -->
+		<!-- FOOTER -->
+		<div id="footer"></div>
+	</div>
+	<!-- END OF CONTAINER -->
+</body>
+</html>

@@ -1,8 +1,10 @@
 package com.codejock.workout.ws.domain;
 
-public class WorkoutResult implements Result {
+import java.util.List;
+
+public class WorkoutListResult implements Result {
 	
-	protected Workout entity;
+	protected EntityList<Workout> entity;
 	protected String errorMessage;
 	protected Operation operation;
 	protected boolean success = false;
@@ -23,8 +25,8 @@ public class WorkoutResult implements Result {
 		return entity;
 	}
 	
-	public void setEntity(Workout workout){
-		this.entity = workout;
+	public void setEntity(EntityList<Workout> workouts){
+		this.entity = workouts;
 	}
 
 	@Override

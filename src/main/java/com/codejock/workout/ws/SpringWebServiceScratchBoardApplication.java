@@ -1,4 +1,4 @@
-package com.codejock.scratchboard.ws;
+package com.codejock.workout.ws;
 
 import java.util.Date;
 
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.codejock.scratchboard.ws.domain.EntityStatus;
-import com.codejock.scratchboard.ws.domain.Workout;
-import com.codejock.scratchboard.ws.jpa.WorkoutRepository;
+import com.codejock.workout.ws.domain.EntityStatus;
+import com.codejock.workout.ws.domain.Workout;
+import com.codejock.workout.ws.jpa.WorkoutRepository;
 
 @SpringBootApplication
 public class SpringWebServiceScratchBoardApplication {

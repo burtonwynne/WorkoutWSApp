@@ -1,4 +1,4 @@
-package com.codejock.scratchboard.ws.domain;
+package com.codejock.workout.ws.domain;
 
 public enum Operation {
 	CREATE, READ, UPDATE, DELETE

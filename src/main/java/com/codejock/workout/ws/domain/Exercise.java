@@ -1,4 +1,4 @@
-package com.codejock.scratchboard.ws.domain;
+package com.codejock.workout.ws.domain;
 
 import java.net.URL;
 import java.util.ArrayList;

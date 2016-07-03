@@ -1,4 +1,4 @@
-package com.codejock.scratchboard.ws;
+package com.codejock.workout.ws;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

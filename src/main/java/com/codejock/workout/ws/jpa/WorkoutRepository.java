@@ -1,9 +1,9 @@
-package com.codejock.scratchboard.ws.jpa;
+package com.codejock.workout.ws.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import com.codejock.scratchboard.ws.domain.Workout;
+import com.codejock.workout.ws.domain.Workout;
 
 
 
