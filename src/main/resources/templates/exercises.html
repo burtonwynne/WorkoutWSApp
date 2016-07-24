@@ -16,7 +16,7 @@
 	function populateExercises(){
 		//alert("hit");
 		$.getJSON("/workout/list", null, function(data) {
-			alert(data);
+			alert(JSON.stringify(data));
 		    $("#Exercises option").remove(); // Remove all <option/> child tags.
 		    $.each(data.entity, function(index, item) { // Iterates through a collection
 		        $("#Exercises").append( // Append an object to the inside of the select box
@@ -37,14 +37,7 @@
 	function editExerciseForm(){
 		var form = $(this);
 		alert(form);
-		var myObject = new Object();
-		myObject.id = form.id.value();
-		myObject.name = form.name.value();
-		myObject.duration = form.duration.value();
-		myObject.creationDate = form.creation_date.value();
-		myObject.lastModifiedDate = form.last_modified_date.value();
-		myObject.video = { form.video.id(), form.video.value()};
-		myObject.status = form.status.value();
+		
 		if(form.id == null){
 			createExercise(form);
 		}else{
@@ -53,7 +46,40 @@
 	}
 	function createExercise(form){
 		alert("Creating Exercise.");
+		$.ajax({
+			type: "PUT",
+			url: "exercise/create", 
+			data: createExerciseJSONData(form),
+			done: fillInExerciseForm(form, data)
+		});
+		}
 	}
+	
+	function createExerciseJSONData(form){
+		var myObject = new Object();
+		myObject.id = form.id.value();
+		myObject.name = form.name.value();
+		myObject.duration = form.duration.value();
+		myObject.creationDate = form.creation_date.value();
+		myObject.lastModifiedDate = form.last_modified_date.value();
+		myObject.video = { form.video.id(), form.video.value()};
+		myObject.status = form.status.value();
+		return myObject();
+	}
+	
+	function fillInExerciseForm(form, data){
+		alert(JSON.stringify(data));
+		form.id = data.id;
+		form.name = data.name;
+		form.duration = data.duration;
+		form.create_date = data.createDate;
+		form.last_modified_date = myObject.lastModifiedDate;
+		form.status = myObject.status;
+		populateExercises();
+	}
+	
+	
+	
 	
 	function updatedExercise(form){
 		alert("Update Exercise");

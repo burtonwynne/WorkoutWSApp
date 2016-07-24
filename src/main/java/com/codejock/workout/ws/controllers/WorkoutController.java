@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codejock.workout.ws.domain.EntityList;
+import com.codejock.workout.ws.domain.EntityStatus;
 import com.codejock.workout.ws.domain.Exercise;
 import com.codejock.workout.ws.domain.ExerciseListResult;
 import com.codejock.workout.ws.domain.Operation;
@@ -106,6 +107,15 @@ public class WorkoutController {
 		return result;
 	}
 	
+	@RequestMapping(value="/shared/status/list", method=RequestMethod.GET, produces="application/json")
+	public EntityStatus[] getStatuses(){
+		return EntityStatus.values();
+	}
+	
+	
+	
+	
+	
 	private WorkoutResult getResult(Operation operation){
 		WorkoutResult result = new WorkoutResult();
 		result.setSuccess(false);
@@ -132,6 +142,8 @@ public class WorkoutController {
 		
 		return result;
 	}
+	
+	
 	
 	
 	private Date getCurrentDate(){
